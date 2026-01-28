@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block title %} home {% endblock %}
+
+{% block subtitle %} Home Page {% endblock %}
+
+{% block main %}
+    <h1>Welcome to UB Marketplace</h1>
+    <p>
+        Discover, buy, and sell products from people in your community.
+        Browse featured items below or add your own listing.
+    </p>
+
+    <hr>
+
+    <h2>Featured items</h2>
+    {% if items %}
+        <table border="1" cellpadding="8" cellspacing="0">
+            <tr>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>Category</th>
+            </tr>
+            {% for i in items %}
+            <tr>
+                <td>{{ i.title }}</td>
+                <td>{{ i.description }}</td>
+                <td>${{ i.price }}</td>
+                <td>{{ i.category.name }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <p>No items listed yet. Be the first to add one!</p>
+    {% endif %}
+
+    <hr>
+
+    <h2>How UB Marketplace works</h2>
+    <ol>
+        <li>Create your account.</li>
+        <li>List an item with photos, price, and description.</li>
+        <li>Chat with buyers or sellers and complete the deal.</li>
+    </ol>
+
+    <h2>Why use UB Marketplace?</h2>
+    <ul>
+        <li>Simple way to sell things you no longer need.</li>
+        <li>Find deals from real people, not big stores.</li>
+        <li>Keep track of all your listings in one place.</li>
+    </ul>
+{% endblock %}
