@@ -6,6 +6,103 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ecoSwap | {% block title %}{% endblock %}</title>
     <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 36px;
+            margin: 0;
+        }
+
+        h2 {
+            font-size: 24px;
+            margin: 0;
+        }
+
+        nav {
+            margin-top: 20px;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin-right: 10px;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        footer {
+            margin-top: 20px;
+            text-align: center;
+            background-color: #333;
+            color: #fff;
+            padding: 10px;            
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #555;
+        }
+
+        .errorlist {
+            color: red;
+            margin-top: 5px;
+        }
+
+    </style>
 </head>
 <body>
   <header>
@@ -13,7 +110,7 @@
     <h2>{% block subtitle %}{% endblock %}</h2>
     <nav>
         <a href="{% url 'home' %}">Home</a>
-        <a href="#">About</a>
+        <a href="{% url 'about' %}">About</a>
         <a href="#">Login</a>
     </nav>
   </header>
