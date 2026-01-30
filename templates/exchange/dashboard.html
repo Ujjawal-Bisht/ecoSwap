@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}My Dashboard{% endblock %}
+{% block subtitle %}Your circular impact{% endblock %}
+
+{% block main %}
+<div class="container">
+    <h2>My Items</h2>
+    <p><a href="{% url 'create_item' %}" class="btn">List a new item</a></p>
+
+    {% if items %}
+        <ul>
+            {% for item in items %}
+                <li>
+                    <strong>{{ item.title }}</strong>
+                    – {{ item.get_exchange_type_display }} in {{ item.location }}
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>You haven’t listed any items yet.</p>
+    {% endif %}
+
+    <hr>
+    <h2>Your Impact</h2>
+    <p><strong>Items kept in circulation:</strong> {{ impact_total_items }}</p>
+    <p><strong>Estimated CO₂ saved:</strong> {{ impact_total_co2 }} kg</p>
+</div>
+{% endblock %}
+

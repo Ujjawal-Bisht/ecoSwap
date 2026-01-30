@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %}{{ item.title }}{% endblock %}
+{% block subtitle %}Item details{% endblock %}
+
+{% block main %}
+<div class="container">
+    <h2>{{ item.title }}</h2>
+    <p><strong>Condition:</strong> {{ item.get_condition_display }}</p>
+    <p><strong>Type:</strong> {{ item.get_exchange_type_display }}</p>
+    <p><strong>Location:</strong> {{ item.location }}</p>
+    {% if item.category %}
+        <p><strong>Category:</strong> {{ item.category.name }}</p>
+    {% endif %}
+    {% if item.description %}
+        <p>{{ item.description }}</p>
+    {% endif %}
+    {% if item.image %}
+        <p><img src="{{ item.image.url }}" alt="{{ item.title }}" style="max-width: 100%; height: auto;"></p>
+    {% endif %}
+
+    {% if user.is_authenticated and user != item.owner %}
+        <hr>
+        <h3>Request this item</h3>
+        <form method="post">
+            {% csrf_token %}
+            {{ swap_form.as_p }}
+            <button type="submit" class="btn">Send request</button>
+        </form>
+    {% elif not user.is_authenticated %}
+        <p><a href="{% url 'login' %}">Log in</a> to request this item.</p>
+    {% else %}
+        <p>This is your item.</p>
+    {% endif %}
+</div>
+{% endblock %}
+

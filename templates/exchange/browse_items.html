@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %}Browse Items{% endblock %}
+{% block subtitle %}Discover items to swap, donate, or reuse{% endblock %}
+
+{% block main %}
+<div class="container">
+    <h2>Browse Items</h2>
+    <p>Keep good stuff in circulation by finding something you need instead of buying new.</p>
+
+    {% if items %}
+        <table border="1" cellpadding="8" cellspacing="0">
+            <tr>
+                <th>Title</th>
+                <th>Condition</th>
+                <th>Type</th>
+                <th>Location</th>
+                <th>Owner</th>
+                <th></th>
+            </tr>
+            {% for item in items %}
+            <tr>
+                <td>{{ item.title }}</td>
+                <td>{{ item.get_condition_display }}</td>
+                <td>{{ item.get_exchange_type_display }}</td>
+                <td>{{ item.location }}</td>
+                <td>{{ item.owner.username }}</td>
+                <td><a href="{% url 'item_detail' item.pk %}">View</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <p>No items listed yet. Be the first to <a href="{% url 'create_item' %}">add one</a>!</p>
+    {% endif %}
+</div>
+{% endblock %}
+

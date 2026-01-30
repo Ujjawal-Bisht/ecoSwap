@@ -1,14 +1,19 @@
 {% extends 'base.html' %}
 
-{% block title %} home {% endblock %}
+{% block title %}Home{% endblock %}
 
-{% block subtitle %} Home Page {% endblock %}
+{% block subtitle %}Swap, donate, and reuse{% endblock %}
 
 {% block main %}
-    <h1>Welcome to UB Marketplace</h1>
+<div class="container">
+    <h1>Welcome to ecoSwap</h1>
     <p>
-        Discover, buy, and sell products from people in your community.
-        Browse featured items below or add your own listing.
+        EcoSwap helps you keep everyday items in use for longer by making it easy to
+        <strong>swap</strong>, <strong>donate</strong>, or <strong>reuse</strong> instead of throwing them away.
+    </p>
+    <p>
+        Browse nearby listings, share what you no longer need, and discover eco-friendly
+        services like recycling centers and repair shops.
     </p>
 
     <hr>
@@ -18,36 +23,38 @@
         <table border="1" cellpadding="8" cellspacing="0">
             <tr>
                 <th>Title</th>
-                <th>Description</th>
-                <th>Price</th>
-                <th>Category</th>
+                <th>Type</th>
+                <th>Condition</th>
+                <th>Location</th>
             </tr>
             {% for i in items %}
             <tr>
                 <td>{{ i.title }}</td>
-                <td>{{ i.description }}</td>
-                <td>${{ i.price }}</td>
-                <td>{{ i.category.name }}</td>
+                <td>{{ i.get_exchange_type_display }}</td>
+                <td>{{ i.get_condition_display }}</td>
+                <td>{{ i.location }}</td>
             </tr>
             {% endfor %}
         </table>
     {% else %}
-        <p>No items listed yet. Be the first to add one!</p>
+        <p>No items listed yet. Be the first to <a href="{% url 'create_item' %}">add one</a>!</p>
     {% endif %}
 
     <hr>
 
-    <h2>How UB Marketplace works</h2>
+    <h2>How ecoSwap works</h2>
     <ol>
-        <li>Create your account.</li>
-        <li>List an item with photos, price, and description.</li>
-        <li>Chat with buyers or sellers and complete the deal.</li>
+        <li>Create your free account.</li>
+        <li>List an item you want to swap, donate, or give away.</li>
+        <li>Connect with neighbors and complete the exchange.</li>
+        <li>Track your impact as more items stay in circulation.</li>
     </ol>
 
-    <h2>Why use UB Marketplace?</h2>
+    <h2>Why use ecoSwap?</h2>
     <ul>
-        <li>Simple way to sell things you no longer need.</li>
-        <li>Find deals from real people, not big stores.</li>
-        <li>Keep track of all your listings in one place.</li>
+        <li>Reduce waste and keep valuable items out of landfills.</li>
+        <li>Support a local, circular economy in your community.</li>
+        <li>Discover eco-friendly services with the built-in Eco Finder.</li>
     </ul>
+</div>
 {% endblock %}

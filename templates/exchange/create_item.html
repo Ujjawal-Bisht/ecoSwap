@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}List an Item{% endblock %}
+{% block subtitle %}Share something instead of throwing it away{% endblock %}
+
+{% block main %}
+<div class="container">
+    <h2>List a New Item</h2>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn">Save Item</button>
+    </form>
+</div>
+{% endblock %}
+

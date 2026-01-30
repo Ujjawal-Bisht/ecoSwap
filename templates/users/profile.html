@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}My Profile{% endblock %}
+{% block subtitle %}Your ecoSwap identity{% endblock %}
+
+{% block main %}
+<div class="container">
+    <h2>Profile</h2>
+
+    {% if profile.avatar %}
+        <p><img src="{{ profile.avatar.url }}" alt="Avatar" style="max-width: 120px; border-radius: 50%;"></p>
+    {% endif %}
+
+    <p><strong>Username:</strong> {{ request.user.username }}</p>
+    <p><strong>Display name:</strong> {{ profile.display_name|default:"Not set" }}</p>
+    <p><strong>Location:</strong> {{ profile.location|default:"Not set" }}</p>
+    <p><strong>Bio:</strong> {{ profile.bio|default:"Tell the community a bit about yourself." }}</p>
+
+    <p><a href="{% url 'edit_profile' %}" class="btn">Edit profile</a></p>
+
+    <hr>
+    <h3>Your Impact</h3>
+    <p><strong>Items kept in circulation:</strong> {{ impact_total_items }}</p>
+    <p><strong>Estimated CO₂ saved:</strong> {{ impact_total_co2 }} kg</p>
+</div>
+{% endblock %}
+
